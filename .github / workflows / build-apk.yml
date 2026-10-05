@@ -29,9 +29,14 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug --stacktrace
 
+      - name: Find generated APK
+        run: |
+          echo "Zoeken naar gegenereerde APK-bestanden..."
+          find . -type f -name "*.apk"
+
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: BTMicFix-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: "**/*.apk"
           if-no-files-found: error
