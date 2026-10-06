@@ -27,6 +27,9 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug --stacktrace
 
+      - name: Show where the APK is
+        run: find . -name "*.apk" -not -path "*/intermediates/*" || true
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
